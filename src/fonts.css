@@ -1,0 +1,185 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
+/* SQUEEZED */
+@font-face {
+    font-family: "OT Neue Montreal Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-BoldSqueezed.otf")
+        format("OpenType");
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-BookSqueezed.otf")
+        format("OpenType");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-ItalicSqueezed.otf")
+        format("OpenType");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-MediumSqueezed.otf")
+        format("OpenType");
+    font-weight: medium;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-SemiBoldSqueezed.otf")
+        format("OpenType");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-ThinSqueezed.otf")
+        format("OpenType");
+    font-weight: thin;
+}
+
+/* EXTRA SQUEEZED */
+@font-face {
+    font-family: "OT Neue Montreal Extra Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-BoldExtraSqueezed.otf")
+        format("OpenType");
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Extra Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-BookExtraSqueezed.otf")
+        format("OpenType");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Extra Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-ItalicExtraSqueezed.otf")
+        format("OpenType");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Extra Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-MediumExtraSqueezed.otf")
+        format("OpenType");
+    font-weight: medium;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Extra Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-SemiBoldExtraSqueezed.otf")
+        format("OpenType");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Extra Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-SemiBoldExtraSqueezed.otf")
+        format("OpenType");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Extra Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-ThinExtraSqueezed.otf")
+        format("OpenType");
+    font-weight: thin;
+}
+
+/* SEMI-SQUEEZED */
+@font-face {
+    font-family: "OT Neue Montreal Semi Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-BoldSemiSqueezed.otf")
+        format("OpenType");
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Semi Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-BookSemiSqueezed.otf")
+        format("OpenType");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Semi Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-ItalicSemiSqueezed.otf")
+        format("OpenType");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Semi Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-MediumSemiSqueezed.otf")
+        format("OpenType");
+    font-weight: medium;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Semi Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-SemiBoldSemiSqueezed.otf")
+        format("OpenType");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Semi Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-ThinSemiSqueezed.otf")
+        format("OpenType");
+    font-weight: thin;
+}
+
+/* ULTRA-SQUEEZED */
+@font-face {
+    font-family: "OT Neue Montreal Ultra Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-BoldUltraSqueezed.otf")
+        format("OpenType");
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Ultra Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-BookUltraSqueezed.otf")
+        format("OpenType");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Ultra Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-ItalicUltraSqueezed.otf")
+        format("OpenType");
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Ultra Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-MediumUltraSqueezed.otf")
+        format("OpenType");
+    font-weight: medium;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Ultra Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-SemiBoldUltraSqueezed.otf")
+        format("OpenType");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "OT Neue Montreal Ultra Squeezed";
+    src: url("src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-ThinUltraSqueezed.otf")
+        format("OpenType");
+    font-weight: thin;
+}
