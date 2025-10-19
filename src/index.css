@@ -34,10 +34,10 @@
     pointer-events: none;
     z-index: -1;
 
-    background-image: url("./src/assets/chrome-star-1.png"),
-        url("./src/assets/chrome-star-2.png"),
-        url("./src/assets/chrome-star-1.png"),
-        url("./src/assets/chrome-star-2.png");
+    background-image: url("/src/assets/chrome-star-1.png"),
+        url("/src/assets/chrome-star-2.png"),
+        url("/src/assets/chrome-star-1.png"),
+        url("/src/assets/chrome-star-2.png");
     background-position: top -30% left -50%, bottom 10% left, top 10% right -20%,
         bottom -30% right -50%;
     background-size: 60%;
@@ -54,6 +54,6 @@
     height: 100%;
     pointer-events: none;
     z-index: -1;
-    background-image: url("./src/assets/grain.png");
+    background-image: url("/src/assets/grain.png");
     opacity: 0.1;
 }
