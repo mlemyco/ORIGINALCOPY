@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import Layout from "../components/Layouts/Layout";
 import { useSearchParams } from "react-router-dom";
 import Button from "../components/Button/Button";

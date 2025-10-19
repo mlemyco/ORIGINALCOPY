@@ -1,9 +1,5 @@
-import React, { forwardRef, useRef } from "react";
-import {
-    SnapList,
-    SnapItem,
-    useVisibleElements,
-} from "react-snaplist-carousel";
+import React, { forwardRef } from "react";
+import { SnapList, SnapItem } from "react-snaplist-carousel";
 
 const Slideshow = forwardRef<
     HTMLDivElement,

@@ -19,7 +19,7 @@ const SelectLayout = () => {
 
     const visible = useVisibleElements(
         { ref: snapList as React.RefObject<HTMLDivElement> },
-        (elements, elementInCenter) => elementInCenter
+        (_, elementInCenter) => elementInCenter
     );
 
     useEffect(() => {
