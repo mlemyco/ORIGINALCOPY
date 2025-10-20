@@ -22,7 +22,10 @@ const Layout = ({
             row.push(
                 <div key={`${i}-${j}`} className={`polaroid-image`}>
                     {images && images[i * dimensions[1] + j] ? (
-                        <img src={images[i * dimensions[1] + j]} />
+                        <img
+                            className="taken"
+                            src={images[i * dimensions[1] + j]}
+                        />
                     ) : (
                         <img src={SilverBackground} />
                     )}

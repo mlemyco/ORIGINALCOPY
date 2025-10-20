@@ -7,6 +7,12 @@ const TakePhoto = ({ countdownValue = 5 }: { countdownValue?: number }) => {
     const [searchParams] = useSearchParams();
     const rows = searchParams.get("rows");
     const cols = searchParams.get("cols");
+    const placeholders = [
+        "/src/assets/placeholders/fatasf.jpg",
+        "src/assets/placeholders/anotherfattie.jpg",
+        "src/assets/placeholders/uglee.jpg",
+        "src/assets/placeholders/BARF.jpg",
+    ];
 
     const [isCounting, setIsCounting] = useState(false);
     const [countdown, setCountdown] = useState(countdownValue);
@@ -16,6 +22,7 @@ const TakePhoto = ({ countdownValue = 5 }: { countdownValue?: number }) => {
     const [takingPhotoIdx, setTakingPhotoIdx] = useState<number | undefined>(
         undefined
     );
+    const [finalImages, setFinalImages] = useState<string[]>([]);
 
     function printPhotos() {
         setIsPrinting(true);
@@ -25,6 +32,7 @@ const TakePhoto = ({ countdownValue = 5 }: { countdownValue?: number }) => {
     }
 
     function retakePhotos() {
+        setFinalImages([]);
         setAllPhotosTaken(false);
         setCountdown(countdownValue);
     }
@@ -37,6 +45,15 @@ const TakePhoto = ({ countdownValue = 5 }: { countdownValue?: number }) => {
             setTakingPhotoIdx(picIndex);
             await new Promise((resolve) => setTimeout(resolve, 1000)); // wait to transition to image
             await startCountdown(); // countdown to take photo
+
+            setFinalImages((prevFinalImages) => {
+                const newFinalImages = [
+                    ...prevFinalImages,
+                    placeholders[picIndex],
+                ];
+                return newFinalImages;
+            });
+
             await new Promise((resolve) => setTimeout(resolve, 1500)); // let audience see the taken photo
         }
 
@@ -79,6 +96,7 @@ const TakePhoto = ({ countdownValue = 5 }: { countdownValue?: number }) => {
             <div className="selected-layout">
                 <Layout
                     dimensions={[Number(rows), Number(cols)]}
+                    images={finalImages}
                     headingText="ORIGINALCOPY"
                     indexOfPic={takingPhotoIdx}
                 />
