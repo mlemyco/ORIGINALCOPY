@@ -1,6 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Libre+Barcode+128+Text&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
 
+/* BARCODE */
+@font-face {
+    font-family: "Barcode";
+    src: url("/src/assets/fonts/barcode_font/BarcodeFont.ttf")
+        format("truetype");
+    font-weight: normal;
+}
+
 /* SQUEEZED */
 @font-face {
     font-family: "OT Neue Montreal Squeezed";
