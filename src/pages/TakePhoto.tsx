@@ -2,17 +2,16 @@ import { useState } from "react";
 import Layout from "../components/Layouts/Layout";
 import { useSearchParams } from "react-router-dom";
 import Button from "../components/Button/Button";
+import fatasf from "../assets/placeholders/fatasf.jpg";
+import anotherfattie from "../assets/placeholders/anotherfattie.jpg";
+import uglee from "../assets/placeholders/uglee.jpg";
+import barf from "../assets/placeholders/BARF.jpg";
 
 const TakePhoto = ({ countdownValue = 5 }: { countdownValue?: number }) => {
     const [searchParams] = useSearchParams();
     const rows = searchParams.get("rows");
     const cols = searchParams.get("cols");
-    const placeholders = [
-        "/src/assets/placeholders/fatasf.jpg",
-        "/src/assets/placeholders/anotherfattie.jpg",
-        "/src/assets/placeholders/uglee.jpg",
-        "/src/assets/placeholders/BARF.jpg",
-    ];
+    const placeholders = [fatasf, anotherfattie, uglee, barf];
 
     const [isCounting, setIsCounting] = useState(false);
     const [countdown, setCountdown] = useState(countdownValue);
