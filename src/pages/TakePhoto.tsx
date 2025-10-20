@@ -9,9 +9,9 @@ const TakePhoto = ({ countdownValue = 5 }: { countdownValue?: number }) => {
     const cols = searchParams.get("cols");
     const placeholders = [
         "/src/assets/placeholders/fatasf.jpg",
-        "src/assets/placeholders/anotherfattie.jpg",
-        "src/assets/placeholders/uglee.jpg",
-        "src/assets/placeholders/BARF.jpg",
+        "/src/assets/placeholders/anotherfattie.jpg",
+        "/src/assets/placeholders/uglee.jpg",
+        "/src/assets/placeholders/BARF.jpg",
     ];
 
     const [isCounting, setIsCounting] = useState(false);
