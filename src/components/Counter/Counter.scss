@@ -1,0 +1,30 @@
+@use "/src/utils/variables";
+
+$button-width: 40px;
+
+.counter {
+    font-family: "JetBrains Mono", monospace;
+    background-color: white;
+    // box-shadow: 0 0 20px 5px rgba($color: black, $alpha: 0.5);
+    border-radius: calc(infinity * 1px);
+    transform: scale(1.5);
+
+    span {
+        margin: 0 5px;
+    }
+
+    button {
+        width: $button-width;
+        height: $button-width;
+        color: white;
+        background-color: variables.$background-color;
+        border-radius: calc(infinity * 1px);
+        margin: 10px;
+
+        &:disabled {
+            color: black;
+            background-color: variables.$light-grey;
+            cursor: not-allowed;
+        }
+    }
+}

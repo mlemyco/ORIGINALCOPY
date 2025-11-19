@@ -36,7 +36,7 @@
     font-family: "OT Neue Montreal Squeezed";
     src: url("/src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-MediumSqueezed.otf")
         format("OpenType");
-    font-weight: medium;
+    font-weight: 530;
 }
 
 @font-face {
@@ -80,7 +80,7 @@
     font-family: "OT Neue Montreal Extra Squeezed";
     src: url("/src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-MediumExtraSqueezed.otf")
         format("OpenType");
-    font-weight: medium;
+    font-weight: 530;
 }
 
 @font-face {
@@ -131,7 +131,7 @@
     font-family: "OT Neue Montreal Semi Squeezed";
     src: url("/src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-MediumSemiSqueezed.otf")
         format("OpenType");
-    font-weight: medium;
+    font-weight: 530;
 }
 
 @font-face {
@@ -175,7 +175,7 @@
     font-family: "OT Neue Montreal Ultra Squeezed";
     src: url("/src/assets/fonts/OT_Neue_Montreal/OTNeueMontreal-MediumUltraSqueezed.otf")
         format("OpenType");
-    font-weight: medium;
+    font-weight: 530;
 }
 
 @font-face {

@@ -1,0 +1,94 @@
+@use "../../utils/variables";
+
+.enter-password {
+    font-family: "JetBrains Mono", monospace;
+    transform: scale(1.5);
+}
+
+.icon {
+    min-width: 50px;
+    margin-right: 5px;
+}
+
+.toggle-option {
+    display: flex;
+    align-items: center;
+    // justify-content: space-between;
+}
+
+.settings-options {
+    font-family: "JetBrains Mono", monospace;
+}
+
+.layout-options {
+    display: flex;
+
+    .layout-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        // align-items: center;
+        row-gap: 10px;
+        padding-top: 10px;
+
+        input {
+            width: 70px;
+            height: 35px;
+        }
+
+        .layout-option {
+            display: flex;
+            align-items: center;
+            height: 35px;
+            background-color: variables.$light-grey;
+            border-radius: calc(infinity * 1px);
+            padding: 5px 12px;
+            margin-right: 10px;
+            transition: 0.2s;
+        }
+
+        .add-layout:active {
+            background-color: variables.$darker-grey;
+        }
+    }
+}
+
+.settings-option {
+    display: flex;
+    align-items: center;
+
+    input {
+        width: 100%;
+    }
+}
+
+input {
+    color: variables.$dark-grey;
+    background-color: variables.$light-grey;
+    border-radius: calc(infinity * 1px);
+    padding: 5px 10px;
+    text-align: center;
+    border: 1px solid transparent;
+    transition: border 0.1s, background-color 0.1s;
+
+    &:focus {
+        outline: none;
+        border: 1px solid black;
+        background-color: white;
+    }
+}
+
+.layout {
+    box-shadow: 0 10px 30px 10px rgba($color: #000000, $alpha: 0.3);
+    zoom: 0.8;
+
+    input {
+        border-radius: 10px;
+    }
+
+    .add-file {
+        border-radius: 10px;
+        background-color: variables.$background-color;
+        color: white;
+        padding: 5px 10px;
+    }
+}

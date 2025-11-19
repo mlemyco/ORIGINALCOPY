@@ -1,16 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import Slideshow from "../components/Slideshow";
-import Layout from "../components/Layouts/Layout";
-import Button from "../components/Button/Button";
+import Layout from "../components/Layout/Layout";
+import Button from "../components/Button";
 import { useVisibleElements } from "react-snaplist-carousel";
 
-const SelectLayout = () => {
-    const displayDimensions: [number, number][] = [
-        [1, 1],
-        [2, 1],
-        [2, 2],
-    ];
-
+const SelectLayout = ({
+    displayDimensions,
+    headingText,
+    labelText,
+}: {
+    displayDimensions: [number, number][];
+    headingText: string;
+    labelText: string;
+}) => {
     const [selectedDimensions, setSelectedDimensions] = useState<
         [number, number]
     >([1, 1]);
@@ -48,14 +50,17 @@ const SelectLayout = () => {
             <Slideshow ref={snapList} setSelected={setSelectedDimensions}>
                 {displayDimensions.map((dimensions, index) => (
                     <div
-                        className={`slide-up`}
+                        className={`slide-up ${
+                            index === visible ? "active" : ""
+                        }`}
                         style={{ animationDelay: `${index * 0.2}s` }}
                         key={index}
                     >
                         <Layout
                             key={index}
                             dimensions={dimensions}
-                            headingText={`ORIGINALCOPY`}
+                            headingText={headingText}
+                            labelText={labelText}
                         />
                     </div>
                 ))}

@@ -7,15 +7,18 @@ const Layout = ({
     images,
     indexOfPic,
     headingText = "ORIGINALCOPY",
+    labelText = "YOU ARE ONE OF A KIND",
 }: {
     dimensions: [number, number]; // [rows, columns]
     images?: string[];
     indexOfPic?: number;
-    headingText: string;
+    headingText?: string | React.ReactNode;
+    labelText?: string | React.ReactNode;
 }) => {
-    const scaleFactor = 2.5;
+    const scaleFactor = 2.6;
     const imagesGrid: React.ReactNode[] = [];
 
+    // generate image grid for layout
     for (let i = 0; i < dimensions[0]; i++) {
         const row: React.ReactNode[] = [];
         for (let j = 0; j < dimensions[1]; j++) {
@@ -42,6 +45,7 @@ const Layout = ({
     const [translateY, setTranslateY] = useState(0);
     const [translateX, setTranslateX] = useState(0);
 
+    // pan and zoom in on individual picture for taking
     useEffect(() => {
         if (
             indexOfPic === undefined ||
@@ -62,7 +66,7 @@ const Layout = ({
         const yDifferenceFromCenter =
             centerYIdx - Math.floor(indexOfPic / numCols);
         const newTranslateY =
-            scaleFactor * (yDifferenceFromCenter * (250 + 12) + 56); // center vertically with 12px gap, 250px image height, 56px for heading height
+            scaleFactor * (yDifferenceFromCenter * (250 + 12) + 75); // center vertically with 12px gap, 250px image height, 60px for heading height
         setTranslateY(newTranslateY);
 
         if (hasCenterX) {
@@ -82,24 +86,28 @@ const Layout = ({
         <div
             className={`layout`}
             style={{
-                translate: `${translateX}px ${translateY}px`,
+                translate:
+                    translateX || translateY
+                        ? `${translateX}px ${translateY}px`
+                        : undefined,
                 position: indexOfPic !== undefined ? "absolute" : "static",
-                transform:
-                    indexOfPic !== undefined
-                        ? `scale(${scaleFactor})`
-                        : "scale(1)",
+                scale: indexOfPic !== undefined ? `${scaleFactor}` : undefined,
             }}
         >
-            <h4 className="mb-4">{headingText}</h4>
+            {typeof headingText === "string" ? (
+                <h4>{headingText}</h4>
+            ) : (
+                headingText
+            )}
 
-            <div className={"images-grid flex flex-col gap-3"}>
+            <div className={"images-grid mt-3 mb-1 flex flex-col gap-3"}>
                 {imagesGrid}
             </div>
 
             <LayoutLabel
-                labelText={"YOU ARE ONE OF A KIND"}
+                labelText={labelText}
                 barcode={
-                    "https://static.vecteezy.com/system/resources/thumbnails/005/449/913/small/barcode-on-white-background-illustration-vector.jpg"
+                    "https://static.vecteezy.com/system/resources/previews/048/230/807/non_2x/barcode-black-color-for-payment-vector.jpg"
                 }
             />
         </div>

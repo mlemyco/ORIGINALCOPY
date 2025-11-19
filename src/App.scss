@@ -1,10 +1,37 @@
-$background-color: #575778;
+@use "sass:math";
+@use "utils/variables";
 
 body {
     font-family: "OT Neue Montreal Squeezed", sans-serif;
+    font-weight: 530;
     color: white;
     text-align: center;
-    background-color: #575778;
+    background-color: variables.$background-color;
+    transition: 0.2s;
+
+    &.light-mode {
+        background-color: white;
+        color: black;
+
+        .btn {
+            border: 2px solid variables.$darker-grey;
+            color: black;
+            background-color: white; //rgba($color: $background-color, $alpha: 0.7);
+        }
+
+        .layout {
+            border: 1px solid rgba($color: black, $alpha: 0.2);
+        }
+
+        .countdown {
+            border: 2px solid variables.$darker-grey;
+            background-color: rgba($color: white, $alpha: 0.5);
+        }
+    }
+
+    // &.light-mode #root::before {
+    //     background-image: none;
+    // }
 }
 
 h1 {
@@ -23,6 +50,104 @@ h4 {
     font-size: 24px;
 }
 
+.line {
+    display: block;
+    width: fit-content;
+    text-align: center;
+    font-size: clamp(1rem, 15vw, 10rem);
+    white-space: nowrap;
+}
+
+.btn {
+    padding: 12px 28px;
+    border-radius: calc(infinity * 1px);
+    border: rgba($color: white, $alpha: 0.3) 1px solid;
+    background-color: rgba($color: white, $alpha: 0.1);
+    backdrop-filter: blur(8px);
+    color: white;
+    transition: 0.2s;
+}
+
+.toggle-btn {
+    $width: 60px;
+    $thumb-width: 20px;
+    $margin: 5px;
+
+    position: relative;
+    border-radius: calc(infinity * 1px);
+    background-color: variables.$light-grey; // toggled off color
+    height: 100%;
+    width: $width;
+    height: math.div($width, 2);
+    transition: background-color 0.2s;
+    cursor: pointer;
+
+    .thumb {
+        position: absolute;
+        width: $thumb-width;
+        height: $thumb-width;
+        background-color: white;
+        border-radius: calc(infinity * 1px);
+        left: $margin;
+        top: 50%;
+        transform: translate(0, -50%);
+        transition: left 0.15s;
+    }
+
+    &.toggled {
+        background-color: variables.$background-color;
+
+        .thumb {
+            left: calc($width - $thumb-width - $margin);
+        }
+    }
+}
+
+$modal-width: 650px;
+$modal-height: 750px;
+.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+    position: absolute;
+    background-color: white;
+    color: black;
+    border-radius: 30px;
+    box-shadow: 0 5px 30px 10px rgba($color: #000000, $alpha: 0.3);
+    padding: 30px 40px;
+    // width: $modal-width;
+    // height: $modal-height;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    z-index: 1000;
+
+    .cover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        opacity: 1;
+        pointer-events: none;
+        animation: 0.2s 0.5s ease-in fadeOut forwards;
+
+        &.immediate {
+            animation: 0.3s 0s ease-in fadeOut forwards;
+        }
+    }
+
+    .btn {
+        background-color: rgba(
+            $color: variables.$background-color,
+            $alpha: 0.7
+        );
+    }
+}
+
 .home {
     width: 100%;
     height: 100%;
@@ -31,11 +156,93 @@ h4 {
     justify-content: center;
     align-items: center;
 
-    background-image: url("/src/assets/chrome-star-1.png"),
-        url("/src/assets/chrome-star-2.png");
-    background-position: top right -150px, bottom left -150px;
-    background-size: 55%, 55%;
-    background-repeat: no-repeat, no-repeat;
+    .heading {
+        font-family: "OT Neue Montreal Extra Squeezed", sans-serif;
+        transform: scale(1.4);
+        margin-top: 60px;
+
+        h1 {
+            font-size: 120px;
+            line-height: 0.8;
+        }
+
+        .subtitle {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    .background-elements {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        &::before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            background-image: url("/src/assets/chrome-star-1.png");
+            background-position: top right -150px;
+            background-size: 55%;
+            background-repeat: no-repeat;
+        }
+
+        &::after {
+            content: "";
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            background-image: url("/src/assets/chrome-star-2.png");
+            background-position: bottom left -150%;
+            background-size: 55%;
+            background-repeat: no-repeat;
+        }
+
+        &.roll-in {
+            &::before {
+                animation-name: rollInLeft;
+                animation-duration: 1s;
+                animation-delay: 0s;
+                animation-timing-function: ease;
+                animation-iteration-count: 1;
+            }
+
+            &::after {
+                animation-name: rollInRight;
+                animation-duration: 1s;
+                animation-delay: 0.2s;
+                animation-timing-function: ease;
+                animation-iteration-count: 1;
+                animation-fill-mode: forwards;
+            }
+        }
+
+        &.roll-in-floating {
+            &::before {
+                content: "";
+
+                animation-name: rollInLeft, floating;
+                animation-duration: 1s, 3s;
+                animation-delay: 0s, 1s;
+                animation-timing-function: ease, ease-in-out;
+                animation-iteration-count: 1, infinite;
+            }
+
+            &::after {
+                animation-name: rollInRight, floating;
+                animation-duration: 1s, 3s;
+                animation-delay: 0.2s, 1.7s;
+                animation-timing-function: ease, ease-in-out;
+                animation-iteration-count: 1, infinite;
+                animation-fill-mode: forwards, none;
+            }
+        }
+    }
 }
 
 .dot-indicators {
@@ -78,18 +285,31 @@ h4 {
             max-height: 100%;
         }
     }
+
+    .active .layout {
+        box-shadow: 0 15px 20px 0 rgba($color: black, $alpha: 0.5);
+        transform: translateY(-10px);
+    }
 }
 
 .layout {
     font-family: "JetBrains Mono", monospace;
+    font-weight: normal;
     display: inline-block;
     color: black;
     background-color: white;
-    /* width: 300px; */
+    width: fit-content;
     height: fit-content;
     /* max-height: 100%; */
     padding: 20px;
     transition: 1s ease;
+
+    h4,
+    .label {
+        width: 250px;
+        white-space: wrap;
+        line-height: 1.2;
+    }
 
     .polaroid-image {
         width: 250px;
@@ -114,12 +334,35 @@ h4 {
     height: 100%;
     overflow: hidden;
 
+    .layout-placeholder {
+        width: 750px;
+        height: 800px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .selected-layout {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         height: 780px;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 20px;
+        z-index: 5;
+        // margin: 20px;
+
+        .layout {
+            border: none;
+            box-shadow: 0 15px 20px 0 rgba($color: black, $alpha: 0.5);
+            // transform: translateY(-10px);
+        }
+
+        &.overflow-hidden .layout {
+            animation: 1s ease 1s slideDown forwards;
+        }
     }
 
     button {
@@ -136,8 +379,9 @@ h4 {
     height: 150px;
     border: 1px solid white;
     border-radius: 100%;
-    background-color: rgba($color: $background-color, $alpha: 0.5);
+    background-color: rgba($color: variables.$background-color, $alpha: 0.5);
     backdrop-filter: blur(10px);
+    z-index: 6;
 }
 
 // ANIMATIONS
@@ -162,12 +406,47 @@ h4 {
     opacity: 0;
     animation: 1s ease 0s slideUp;
     animation-fill-mode: forwards;
+    transition: 1s ease;
 }
 
 .slide-down {
-    opacity: 1;
+    // opacity: 1;
     animation: 1s ease 0s slideDown;
     animation-fill-mode: forwards;
+}
+
+.floating {
+    animation: 3s infinite floating;
+}
+
+.roll-in-floating {
+    animation-name: rollIn, floating;
+    animation-duration: 1s, 3s;
+    animation-delay: 0s, 1s;
+    animation-timing-function: ease, ease-in-out;
+    animation-iteration-count: 1, infinite;
+}
+
+.screen-open {
+    animation-name: widthOpen, heightOpen;
+    animation-duration: 0.25s, 0.5s;
+    animation-delay: 0s, 0.25s;
+    animation-timing-function: ease, ease;
+    animation-fill-mode: forwards, forwards;
+}
+
+.screen-close {
+    width: $modal-width;
+    height: $modal-height;
+    animation-name: heightClose, widthClose;
+    animation-duration: 0.25s, 0.5s;
+    animation-delay: 0s, 0.25s;
+    animation-timing-function: ease, ease;
+    animation-fill-mode: forwards, forwards;
+}
+
+.spin-clockwise {
+    animation: 1s spinClockwise;
 }
 
 @keyframes rollIn {
@@ -192,6 +471,24 @@ h4 {
     }
 }
 
+@keyframes rollInLeft {
+    0% {
+        background-position: top right -150%;
+    }
+    100% {
+        background-position: top right -150px;
+    }
+}
+
+@keyframes rollInRight {
+    0% {
+        background-position: bottom left -150%;
+    }
+    100% {
+        background-position: bottom left -150px;
+    }
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -207,6 +504,7 @@ h4 {
     }
     100% {
         opacity: 0;
+        display: none;
     }
 }
 
@@ -223,11 +521,68 @@ h4 {
 
 @keyframes slideDown {
     0% {
-        opacity: 1;
+        // opacity: 1;
         translate: 0% 0%;
     }
     100% {
-        opacity: 0;
+        // opacity: 0;
         translate: 0% 150%;
+    }
+}
+
+@keyframes floating {
+    0% {
+        translate: 0px 0px;
+    }
+    50% {
+        translate: 0px -20px;
+    }
+    100% {
+        translate: 0px 0px;
+    }
+}
+
+@keyframes widthOpen {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: var(--open-width, $modal-width);
+    }
+}
+
+@keyframes heightOpen {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: var(--open-height, $modal-height);
+    }
+}
+
+@keyframes widthClose {
+    0% {
+        width: $modal-width;
+    }
+    100% {
+        width: 0;
+    }
+}
+
+@keyframes heightClose {
+    0% {
+        height: $modal-height;
+    }
+    100% {
+        height: 0;
+    }
+}
+
+@keyframes spinClockwise {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(180deg);
     }
 }

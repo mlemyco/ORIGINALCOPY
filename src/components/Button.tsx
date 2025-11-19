@@ -1,5 +1,4 @@
 import React from "react";
-import "./Button.scss";
 import { useNavigate } from "react-router-dom";
 
 const Button = ({
@@ -28,7 +27,7 @@ const Button = ({
     };
 
     return (
-        <button className="w-fit font-bold text-4xl" onClick={handleClick}>
+        <button className="btn w-fit font-bold text-4xl" onClick={handleClick}>
             {children}
         </button>
     );
