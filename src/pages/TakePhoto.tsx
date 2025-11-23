@@ -203,7 +203,7 @@ const TakePhoto = ({
                     >
                         <Button handleClickFn={selectPrints}>PRINT</Button>
                         <Button handleClickFn={retakePhotos}>RETAKE</Button>
-                        <Button navigateOptions={{ to: "/" }}>FINISH</Button>
+                        {/* <Button navigateOptions={{ to: "/" }}>FINISH</Button> */}
                     </div>
                     {donePrinting && (
                         <div className="fade-in">
