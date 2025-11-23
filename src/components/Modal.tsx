@@ -4,8 +4,8 @@ const Modal = ({
     children,
     width,
     height,
-    setOpen,
-}: {
+}: // setOpen,
+{
     children: React.ReactNode;
     width: number;
     height: number;
