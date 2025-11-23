@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_URL = "http://127.0.0.1:5000";
 
-export const printPhoto = async (imgDataUrl: string) => {
+export const printPhoto = async (imgDataUrl: string, numCopies: number) => {
     const currentDate = new Date();
 
     const blob = await (await fetch(imgDataUrl)).blob();
@@ -11,6 +11,7 @@ export const printPhoto = async (imgDataUrl: string) => {
     const formData = new FormData();
     formData.append("image", imgFile);
     formData.append("time", currentDate.toISOString());
+    formData.append("numCopies", numCopies.toString());
 
     axios
         .post(API_URL + "/print", formData)

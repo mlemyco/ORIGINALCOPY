@@ -77,7 +77,7 @@ const TakePhoto = ({
             if (!imgDataUrl) return;
 
             console.log("imgDataUrl:", imgDataUrl);
-            printPhoto(imgDataUrl);
+            printPhoto(imgDataUrl, copiesToPrint);
         });
 
         setTimeout(() => {
