@@ -1,30 +1,38 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import { useSearchParams } from "react-router-dom";
 import Button from "../components/Button";
-import fatasf from "../assets/placeholders/fatasf.jpg";
-import anotherfattie from "../assets/placeholders/anotherfattie.jpg";
-import uglee from "../assets/placeholders/uglee.jpg";
-import barf from "../assets/placeholders/BARF.jpg";
+// import fatasf from "../assets/placeholders/fatasf.jpg";
+// import anotherfattie from "../assets/placeholders/anotherfattie.jpg";
+// import uglee from "../assets/placeholders/uglee.jpg";
+// import barf from "../assets/placeholders/BARF.jpg";
 import Modal from "../components/Modal";
 import Counter from "../components/Counter/Counter";
 import AutoFitLines from "../components/AutoFitLines/AutoFitLines";
+import type Webcam from "react-webcam";
+// import html2canvas from "html2canvas";
+import { printPhoto } from "../services/printService";
 
 const TakePhoto = ({
     countdownValue,
     headingText,
+    headingImg,
     labelText,
     maxCopies,
 }: {
     countdownValue: number;
     headingText: string;
+    headingImg: string;
     labelText: string;
     maxCopies: number;
 }) => {
     const [searchParams] = useSearchParams();
     const rows = searchParams.get("rows");
     const cols = searchParams.get("cols");
-    const placeholders = [fatasf, anotherfattie, uglee, barf];
+    // const placeholders = [fatasf, anotherfattie, uglee, barf];
+
+    const webcamRef = useRef<Webcam>(null);
+    const printImageRef = useRef<HTMLDivElement>(null);
 
     const [isCounting, setIsCounting] = useState(false);
     const [countdown, setCountdown] = useState(countdownValue);
@@ -40,6 +48,22 @@ const TakePhoto = ({
     const [isPrinting, setIsPrinting] = useState(false);
     const [donePrinting, setDonePrinting] = useState(false);
 
+    const [imageToPrint, setImageToPrint] = useState("");
+
+    // function resetState() {
+    //     setIsCounting(false);
+    //     setCountdown(countdownValue);
+    //     setAllPhotosTaken(false);
+    //     setIsSelectingPrints(false);
+    //     setIsTaking(false);
+    //     setTakingPhotoIdx(undefined);
+    //     setFinalImages([]);
+    //     setCopiesToPrint(1);
+    //     setSlideDown(false);
+    //     setIsPrinting(false);
+    //     setDonePrinting(false);
+    // }
+
     function selectPrints() {
         setIsSelectingPrints(true);
     }
@@ -48,6 +72,14 @@ const TakePhoto = ({
         setIsSelectingPrints(false);
         setSlideDown(true);
         setIsPrinting(true);
+
+        getImageToPrint().then((imgDataUrl) => {
+            if (!imgDataUrl) return;
+
+            console.log("imgDataUrl:", imgDataUrl);
+            printPhoto(imgDataUrl);
+        });
+
         setTimeout(() => {
             setIsPrinting(false);
             setDonePrinting(true);
@@ -70,10 +102,18 @@ const TakePhoto = ({
 
             await startCountdown(); // countdown to take photo
 
+            // take photo
+            const screenshot = webcamRef.current?.getScreenshot();
+            if (!screenshot) {
+                return;
+            }
+            setImageToPrint(screenshot);
+
             setFinalImages((prevFinalImages) => {
                 const newFinalImages = [
                     ...prevFinalImages,
-                    placeholders[picIndex],
+                    screenshot,
+                    //placeholders[picIndex],
                 ];
                 return newFinalImages;
             });
@@ -107,6 +147,16 @@ const TakePhoto = ({
         });
     }
 
+    async function getImageToPrint() {
+        // if (!printImageRef.current) return;
+
+        // const canvas = await html2canvas(printImageRef.current);
+        // const imgDataUrl = canvas.toDataURL("image/png");
+        const imgDataUrl = imageToPrint;
+
+        return imgDataUrl;
+    }
+
     return (
         <div className="take-photo flex flex-col justify-center items-center gap-5">
             <h3 className={`${slideDown ? "fade-out" : ""}`}>
@@ -137,8 +187,11 @@ const TakePhoto = ({
                         dimensions={[Number(rows), Number(cols)]}
                         images={finalImages}
                         headingText={headingText}
+                        headingImg={headingImg}
                         labelText={labelText}
                         indexOfPic={takingPhotoIdx}
+                        webcamRef={webcamRef}
+                        printImageRef={printImageRef}
                     />
                 </div>
             )}
@@ -150,12 +203,12 @@ const TakePhoto = ({
                     >
                         <Button handleClickFn={selectPrints}>PRINT</Button>
                         <Button handleClickFn={retakePhotos}>RETAKE</Button>
-                        <Button navigateOptions={{ to: "/" }}>RESTART</Button>
+                        <Button navigateOptions={{ to: "/" }}>FINISH</Button>
                     </div>
                     {donePrinting && (
                         <div className="fade-in">
                             <Button navigateOptions={{ to: "/" }}>
-                                RESTART
+                                FINISH
                             </Button>
                         </div>
                     )}

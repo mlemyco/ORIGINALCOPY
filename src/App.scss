@@ -141,10 +141,18 @@ $modal-height: 750px;
     }
 
     .btn {
-        background-color: rgba(
-            $color: variables.$background-color,
-            $alpha: 0.7
-        );
+        // border: 2px solid transparent;
+        background-color: rgba($color: variables.$background-color, $alpha: 1);
+        transition: none;
+
+        &:active {
+            // border: 2px solid
+            //     rgba($color: variables.$background-color, $alpha: 1);
+            background-color: rgba(
+                $color: variables.$background-color,
+                $alpha: 0.7
+            );
+        }
     }
 }
 
@@ -301,14 +309,19 @@ $modal-height: 750px;
     width: fit-content;
     height: fit-content;
     /* max-height: 100%; */
-    padding: 20px;
+    padding: 45px 10px 10px 10px;
     transition: 1s ease;
+    zoom: 2;
 
     h4,
     .label {
         width: 250px;
         white-space: wrap;
         line-height: 1.2;
+    }
+
+    .social {
+        font-size: 12px;
     }
 
     .polaroid-image {
@@ -336,7 +349,7 @@ $modal-height: 750px;
 
     .layout-placeholder {
         width: 750px;
-        height: 800px;
+        height: 750px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -344,7 +357,7 @@ $modal-height: 750px;
 
     .selected-layout {
         position: absolute;
-        top: 50%;
+        top: 48%;
         left: 50%;
         transform: translate(-50%, -50%);
         height: 780px;
@@ -379,8 +392,8 @@ $modal-height: 750px;
     height: 150px;
     border: 1px solid white;
     border-radius: 100%;
-    background-color: rgba($color: variables.$background-color, $alpha: 0.5);
-    backdrop-filter: blur(10px);
+    // background-color: rgba($color: variables.$background-color, $alpha: 0.5);
+    // backdrop-filter: blur(10px);
     z-index: 6;
 }
 
@@ -391,6 +404,10 @@ $modal-height: 750px;
 
 .roll-out {
     animation: 1s ease 0s rollOut;
+}
+
+.fade-in-webcam {
+    animation: 1s ease 1s fadeInWebcam forwards;
 }
 
 .fade-in {
@@ -486,6 +503,15 @@ $modal-height: 750px;
     }
     100% {
         background-position: bottom left -150px;
+    }
+}
+
+@keyframes fadeInWebcam {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 35%;
     }
 }
 

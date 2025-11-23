@@ -5,6 +5,7 @@ import type { settingsProps } from "../../types";
 import Layout from "../Layout/Layout";
 import Button from "../Button";
 import Modal from "../Modal";
+import CloseButton from "../CloseButton/CloseButton";
 
 const Settings = ({
     defaultSettings,
@@ -94,6 +95,27 @@ const Settings = ({
         }
     }
 
+    function handleLogoImgChange(event: React.ChangeEvent<HTMLInputElement>) {
+        if (!event.target.files) return;
+
+        const newImg = event.target.files[0];
+        const previewUrl = URL.createObjectURL(newImg);
+        // setLogoImgUrl(previewUrl);
+
+        setSettings((prevSettings) => ({
+            ...prevSettings,
+            logoImg: previewUrl,
+        }));
+    }
+
+    function removeLogoImg() {
+        // setLogoImgUrl("");
+        setSettings((prevSettings) => ({
+            ...prevSettings,
+            logoImg: "",
+        }));
+    }
+
     function handleLabelTextChange(event: React.ChangeEvent<HTMLInputElement>) {
         const newText = event.target.value;
         setSettings((prevSettings) => ({
@@ -156,6 +178,13 @@ const Settings = ({
         setSettings((prevSettings) => ({
             ...prevSettings,
             isFloating: isFloating,
+        }));
+    }
+
+    function toggleStarsVisible(starsVisible: boolean) {
+        setSettings((prevSettings) => ({
+            ...prevSettings,
+            starsVisible: starsVisible,
         }));
     }
 
@@ -289,6 +318,22 @@ const Settings = ({
                                                 <i className="fa-solid fa-star"></i>
                                             </h3>
                                             <ToggleButton
+                                                isToggled={
+                                                    settings.starsVisible
+                                                }
+                                                toggleFunction={() =>
+                                                    toggleStarsVisible(
+                                                        !settings.starsVisible
+                                                    )
+                                                }
+                                            />
+                                        </div>
+
+                                        <div className="toggle-option">
+                                            <h3 className="icon">
+                                                <i className="fa-solid fa-arrows-up-down"></i>
+                                            </h3>
+                                            <ToggleButton
                                                 isToggled={settings.isFloating}
                                                 toggleFunction={() =>
                                                     toggleFloatingStars(
@@ -329,15 +374,22 @@ const Settings = ({
                                     <Layout
                                         dimensions={[1, 1]}
                                         headingText={
-                                            <div className="flex w-full gap-2">
-                                                {settings.logoText instanceof
-                                                File ? (
-                                                    <img
-                                                        src={URL.createObjectURL(
-                                                            settings.logoText
-                                                        )}
-                                                        alt=""
-                                                    />
+                                            <div className="flex gap-2">
+                                                {settings.logoImg ? (
+                                                    <div className="relative h-9 w-full">
+                                                        <img
+                                                            src={
+                                                                settings.logoImg
+                                                            }
+                                                            alt=""
+                                                            className="h-full mx-auto grayscale"
+                                                        />
+                                                        <CloseButton
+                                                            closeFn={
+                                                                removeLogoImg
+                                                            }
+                                                        />
+                                                    </div>
                                                 ) : (
                                                     <input
                                                         type="text"
@@ -352,15 +404,23 @@ const Settings = ({
                                                     />
                                                 )}
 
-                                                <label htmlFor="header-file">
-                                                    <button className="add-file flex-none">
-                                                        <i className="fa-solid fa-file-circle-plus"></i>
-                                                    </button>
-                                                </label>
-                                                <input
-                                                    id="header-file"
-                                                    type="file"
-                                                />
+                                                {!settings.logoImg && (
+                                                    <>
+                                                        <label htmlFor="header-file">
+                                                            <div className="add-file flex-none">
+                                                                <i className="fa-solid fa-file-circle-plus"></i>
+                                                            </div>
+                                                        </label>
+                                                        <input
+                                                            id="header-file"
+                                                            className="absolute hidden"
+                                                            type="file"
+                                                            onChange={
+                                                                handleLogoImgChange
+                                                            }
+                                                        />
+                                                    </>
+                                                )}
                                             </div>
                                         }
                                         labelText={

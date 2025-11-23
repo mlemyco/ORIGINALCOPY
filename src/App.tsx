@@ -15,7 +15,12 @@ function App() {
             <Routes>
                 <Route
                     path="/"
-                    element={<Home isFloating={settings.isFloating} />}
+                    element={
+                        <Home
+                            isFloating={settings.isFloating}
+                            starsVisible={settings.starsVisible}
+                        />
+                    }
                 />
                 <Route
                     path="/select-layout"
@@ -33,6 +38,7 @@ function App() {
                         <TakePhoto
                             countdownValue={settings.countdownValue}
                             headingText={settings.logoText}
+                            headingImg={settings.logoImg}
                             labelText={settings.labelText}
                             maxCopies={settings.maxCopies}
                         />

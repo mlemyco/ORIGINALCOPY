@@ -1,6 +1,8 @@
 interface settingsProps {
     isFloating: boolean;
-    logoText: string | File;
+    starsVisible: boolean;
+    logoText: string; // | File;
+    logoImg: string;
     labelText: string;
     lightMode: boolean;
     layouts: [number, number][];

@@ -9,21 +9,13 @@ const AutoFitLine = ({ children }: { children: React.ReactNode }) => {
             const el = ref.current;
             if (!el) return;
 
-            console.log("el", el);
-
             const parentWidth = el.parentElement?.offsetWidth;
             if (!parentWidth) return;
-
-            console.log("parentWidth", parentWidth);
 
             const currentWidth = el.offsetWidth;
             const currentHeight = el.offsetHeight;
 
-            console.log("currentWidth", currentWidth);
-            console.log("currentHeight", currentHeight);
-
             const fontSize = (currentHeight * parentWidth) / currentWidth;
-            console.log("fontSize", fontSize);
             el.style.fontSize = fontSize + "px";
         });
 

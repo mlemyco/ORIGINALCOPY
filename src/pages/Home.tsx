@@ -1,14 +1,27 @@
 import Button from "../components/Button";
+import WebcamComponent from "../components/Webcam/WebcamComponent";
 
-const Home = ({ isFloating }: { isFloating: boolean }) => {
+const Home = ({
+    isFloating,
+    starsVisible,
+}: {
+    isFloating: boolean;
+    starsVisible: boolean;
+}) => {
     return (
         <div className="home">
-            <div
-                className={
-                    `background-elements roll-in` +
-                    (isFloating ? "-floating" : "")
-                }
-            ></div>
+            <div className="w-screen h-screen opacity-0 absolute inset-0 fade-in-webcam">
+                <WebcamComponent />
+            </div>
+
+            {starsVisible && (
+                <div
+                    className={
+                        `background-elements roll-in` +
+                        (isFloating ? "-floating" : "")
+                    }
+                ></div>
+            )}
 
             <div className="fade-in">
                 <div className="heading mb-20">
@@ -19,7 +32,15 @@ const Home = ({ isFloating }: { isFloating: boolean }) => {
                     </div>
                 </div>
 
-                <Button navigateOptions={{ to: "/select-layout" }}>
+                <Button
+                    navigateOptions={{
+                        to: "/take-photo",
+                        search: new URLSearchParams([
+                            ["rows", "1"],
+                            ["cols", "1"],
+                        ]).toString(),
+                    }}
+                >
                     START HERE
                 </Button>
             </div>
